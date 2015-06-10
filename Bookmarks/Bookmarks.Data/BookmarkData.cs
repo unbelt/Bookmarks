@@ -38,6 +38,11 @@
             get { return this.GetRepository<Category>(); }
         }
 
+        public IGenericRepository<Comment> Comments
+        {
+            get { return this.GetRepository<Comment>(); }
+        }
+
         public IGenericRepository<Vote> Votes
         {
             get { return this.GetRepository<Vote>(); }

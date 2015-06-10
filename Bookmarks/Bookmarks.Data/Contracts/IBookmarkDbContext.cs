@@ -15,15 +15,19 @@
 
         IDbSet<Category> Categories { get; }
 
+        IDbSet<Comment> Comments { get; }
+
         IDbSet<Vote> Votes { get; }
 
         DbContext DbContext { get; }
 
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+
+        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entry) where TEntity : class;
+
         RoleStore<IdentityRole> RoleStore { get; }
 
         UserStore<User> UserStore { get; }
-
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entry) where TEntity : class;
 
         int SaveChanges();
 

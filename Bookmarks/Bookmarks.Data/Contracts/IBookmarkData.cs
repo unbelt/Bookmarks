@@ -12,6 +12,8 @@
 
         IGenericRepository<Category> Categories { get; }
 
+        IGenericRepository<Comment> Comments { get; }
+
         IGenericRepository<Vote> Votes { get; }
 
         int SaveChanges();

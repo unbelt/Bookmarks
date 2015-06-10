@@ -23,6 +23,7 @@ namespace Bookmarks.Data.Migrations
             SeedUsers(context);
             SeedCategories(context);
             SeedBookmarks(context);
+            SeedComments(context);
         }
 
         private static void SeedRoles(BookmarkDbContext context)
@@ -43,8 +44,6 @@ namespace Bookmarks.Data.Migrations
                     roleManager.Create(new IdentityRole(role));
                 }
             }
-
-            context.SaveChanges();
         }
 
         private static void SeedUsers(BookmarkDbContext context)
@@ -116,6 +115,24 @@ namespace Bookmarks.Data.Migrations
             foreach (var bookmark in bookmarks)
             {
                 context.Bookmarks.AddOrUpdate(b => b.Url, bookmark);
+            }
+        }
+
+        private static void SeedComments(BookmarkDbContext context)
+        {
+            var comments = new List<Comment>
+            {
+                new Comment()
+                {
+                    User = context.Users.FirstOrDefault(u => u.UserName == "user"),
+                    Bookmark = context.Bookmarks.FirstOrDefault(b => b.Url.Contains("http://www.introprogramming.info/")),
+                    Text = "Great book!"
+                }
+            };
+
+            foreach (var comment in comments)
+            {
+                context.Comments.AddOrUpdate(c => c.Text, comment);
             }
         }
     }
