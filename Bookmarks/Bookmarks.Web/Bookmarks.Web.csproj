@@ -212,12 +212,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -227,6 +229,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Mappings\IHaveCustomMapping.cs" />
+    <Compile Include="Infrastructure\Mappings\IMapFrom.cs" />
+    <Compile Include="Infrastructure\Mappings\IMapTo.cs" />
+    <Compile Include="Infrastructure\Mappings\MapType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -306,6 +312,10 @@
     <ProjectReference Include="..\Bookmarks.Config\Bookmarks.Config.csproj">
       <Project>{6082b4c3-37b6-49d7-9c37-412c8cb15e79}</Project>
       <Name>Bookmarks.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bookmarks.Data\Bookmarks.Data.csproj">
+      <Project>{50257c29-62b5-4929-9aa3-662ee45616fd}</Project>
+      <Name>Bookmarks.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

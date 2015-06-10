@@ -30,15 +30,16 @@
         </div>
     </div>
     <div class="container body-content">
+        @Html.Partial("_Notifocations")
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - @Constants.ApplicationName</p>
-        </footer>
-    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - @Constants.ApplicationName</p>
+    </footer>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 </html>
