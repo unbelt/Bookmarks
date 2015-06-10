@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public class User
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    public class User : IdentityUser
     {
         private ICollection<Bookmark> bookmarks;
 

@@ -2,44 +2,52 @@
 {
     using System.Data.Entity;
 
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     using Bookmarks.Data.Contracts;
+    using Bookmarks.Data.Migrations;
     using Bookmarks.Models;
 
-    public class BookmarkDbContext : IBookmarkDbContext
+    public class BookmarkDbContext : IdentityDbContext<User>, IBookmarkDbContext
     {
-        public IDbSet<User> Users
+        public const string SqlConnectionString = "Server=.;Database=Twitter;Integrated Security=True;";
+
+        public BookmarkDbContext()
+            : base(SqlConnectionString, throwIfV1Schema: false)
         {
-            get { throw new System.NotImplementedException(); }
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookmarkDbContext, Configuration>());
         }
 
-        public IDbSet<Bookmark> Bookmarks
+        public static IBookmarkDbContext Create()
         {
-            get { throw new System.NotImplementedException(); }
+            return new BookmarkDbContext();
         }
 
-        public IDbSet<Category> Categories
+        public DbContext DbContext
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this; }
         }
 
-        public IDbSet<Vote> Votes
+        public RoleStore<IdentityRole> RoleStore
         {
-            get { throw new System.NotImplementedException(); }
+            get
+            {
+                return new RoleStore<IdentityRole>(this.DbContext);
+            }
         }
 
-        public DbSet<TEntity> Set<TEntity>(TEntity entity) where TEntity : class
+        public UserStore<User> UserStore
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return new UserStore<User>(this.DbContext);
+            }
         }
 
-        public int SaveChanges()
-        {
-            throw new System.NotImplementedException();
-        }
+        public virtual IDbSet<Bookmark> Bookmarks { get; set; }
 
-        public void Dispose()
-        {
-            throw new System.NotImplementedException();
-        }
+        public virtual IDbSet<Category> Categories { get; set; }
+
+        public virtual IDbSet<Vote> Votes { get; set; }
     }
 }
