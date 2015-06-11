@@ -1,3 +1,12 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model ICollection<Bookmarks.Web.ViewModels.BookmarkViewModel>
+
+@foreach (var bookmark in Model)
+{
+    <article class="col-md-4">
+        <header>
+            <h3>@bookmark.Title</h3>
+        </header>
+
+        <p>@bookmark.Description</p>
+    </article>
 }

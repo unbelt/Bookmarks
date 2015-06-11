@@ -6,10 +6,12 @@
     public class Bookmark
     {
         private ICollection<Comment> comments;
+        private ICollection<Vote> votes;
 
         public Bookmark()
         {
             this.comments = new HashSet<Comment>();
+            this.votes = new HashSet<Vote>();
         }
 
         [Key]
@@ -23,13 +25,11 @@
         [StringLength(200, MinimumLength = 2)]
         public string Url { get; set; }
 
-        public int CategoryId { get; set; }
+        [StringLength(500, MinimumLength = 2)]
+        public string Description { get; set; }
 
         [Required]
         public virtual Category Category { get; set; }
-
-        [StringLength(500, MinimumLength = 2)]
-        public string Description { get; set; }
 
         public virtual ICollection<Comment> Comments
         {
@@ -41,6 +41,19 @@
             set
             {
                 this.comments = value;
+            }
+        }
+
+        public virtual ICollection<Vote> Votes
+        {
+            get
+            {
+                return this.votes;
+            }
+
+            set
+            {
+                this.votes = value;
             }
         }
     }

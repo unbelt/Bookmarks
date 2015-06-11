@@ -63,7 +63,7 @@
 
         private IGenericRepository<T> GetRepository<T>() where T : class
         {
-            if (!this.repository.ContainsKey(typeof(T))) { }
+            if (!this.repository.ContainsKey(typeof(T)))
             {
                 var type = typeof(GenericRepository<T>);
                 repository.Add(typeof(T), Activator.CreateInstance(type, this.context));

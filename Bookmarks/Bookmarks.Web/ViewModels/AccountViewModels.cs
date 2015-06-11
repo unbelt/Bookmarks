@@ -1,4 +1,4 @@
-﻿namespace Bookmarks.Web.Models
+﻿namespace Bookmarks.Web.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -64,6 +64,11 @@
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "User Name")]
+        [StringLength(20, MinimumLength = 3)]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

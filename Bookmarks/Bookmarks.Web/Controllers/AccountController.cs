@@ -6,7 +6,7 @@
     using System.Web.Mvc;
 
     using Bookmarks.Models;
-    using Bookmarks.Web.Models;
+    using Bookmarks.Web.ViewModels;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
@@ -151,7 +151,7 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

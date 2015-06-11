@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{ECE47F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookmarks.Config", "Bookmarks.Config\Bookmarks.Config.csproj", "{6082B4C3-37B6-49D7-9C37-412C8CB15E79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookmarks.Exceptions", "Bookmarks.Exceptions\Bookmarks.Exceptions.csproj", "{5EBB5608-3C41-4FB6-B0C0-4022921C0164}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{6082B4C3-37B6-49D7-9C37-412C8CB15E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6082B4C3-37B6-49D7-9C37-412C8CB15E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6082B4C3-37B6-49D7-9C37-412C8CB15E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EBB5608-3C41-4FB6-B0C0-4022921C0164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBB5608-3C41-4FB6-B0C0-4022921C0164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBB5608-3C41-4FB6-B0C0-4022921C0164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBB5608-3C41-4FB6-B0C0-4022921C0164}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{BE77D758-E68E-4B86-81B3-89839C3931E1} = {2F6D33D5-845C-4E25-992E-E9A3C6AD5218}
 		{83CCC013-44F0-499F-B6AC-202513A42876} = {CAEF3AE4-A440-4971-B85F-D7AD79E8593D}
 		{6082B4C3-37B6-49D7-9C37-412C8CB15E79} = {ECE47F92-0DE8-4032-8AE3-59F6C3DADBC2}
+		{5EBB5608-3C41-4FB6-B0C0-4022921C0164} = {ECE47F92-0DE8-4032-8AE3-59F6C3DADBC2}
 	EndGlobalSection
 EndGlobal

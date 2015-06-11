@@ -1,4 +1,4 @@
-﻿namespace Bookmarks.Web.Models
+﻿namespace Bookmarks.Web.ViewModels
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

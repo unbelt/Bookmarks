@@ -5,7 +5,7 @@
     using System.Web;
     using System.Web.Mvc;
 
-    using Bookmarks.Web.Models;
+    using Bookmarks.Web.ViewModels;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;

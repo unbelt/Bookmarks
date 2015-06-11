@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <meta name="description" content="Website for bookmark sharing." />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -31,7 +32,9 @@
     </div>
     <div class="container body-content">
         @Html.Partial("_Notifications")
-        @RenderBody()
+        <div class="row">
+            @RenderBody()
+        </div>
     <hr />
     <footer>
         <p>&copy; @DateTime.Now.Year - @Constants.ApplicationName</p>

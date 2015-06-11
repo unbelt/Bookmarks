@@ -1,11 +1,13 @@
 ﻿namespace Bookmarks.Data
 {
     using System.Data.Entity;
+    using System.Data.Entity.Validation;
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
     using Bookmarks.Data.Contracts;
     using Bookmarks.Data.Migrations;
+    using Bookmarks.Exceptions;
     using Bookmarks.Models;
 
     public class BookmarkDbContext : IdentityDbContext<User>, IBookmarkDbContext
@@ -52,5 +54,18 @@
         public virtual IDbSet<Comment> Comments { get; set; }
 
         public virtual IDbSet<Vote> Votes { get; set; }
+
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                var newException = new FormattedDbEntityValidationException(e);
+                throw newException;
+            }
+        }
     }
 }
