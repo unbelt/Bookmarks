@@ -15,6 +15,7 @@
         public BookmarkDbContext()
             : base(SqlConnectionString, throwIfV1Schema: false)
         {
+            // Database.SetInitializer(new DropCreateDatabaseAlways<BookmarkDbContext>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookmarkDbContext, Configuration>());
         }
 

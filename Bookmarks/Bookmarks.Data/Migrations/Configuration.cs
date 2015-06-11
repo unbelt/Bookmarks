@@ -26,8 +26,9 @@ namespace Bookmarks.Data.Migrations
                 SeedRoles(context);
                 SeedUsers(context);
                 SeedCategories(context);
+                context.SaveChanges();
+
                 SeedBookmarks(context);
-                SeedComments(context);
             }
             catch (DbEntityValidationException e)
             {
@@ -128,32 +129,21 @@ namespace Bookmarks.Data.Migrations
                     Category = context.Categories.FirstOrDefault(c => c.Name == "Books"),
                     Title = "Computer Programming with C#",
                     Url = "http://www.introprogramming.info/",
-                    Description = "The book 'Fundamentals of Computer Programming with C#' is an excellent manual to guide you through your journey of programming as beginner."
+                    Description = "The book 'Fundamentals of Computer Programming with C#' is an excellent manual to guide you through your journey of programming as beginner.",
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            User = context.Users.FirstOrDefault(u => u.UserName == "user"),
+                            Text = "Great book!"
+                        }
+                    }
                 }
             };
 
             foreach (var bookmark in bookmarks)
             {
                 context.Bookmarks.AddOrUpdate(b => b.Url, bookmark);
-            }
-        }
-
-        private static void SeedComments(BookmarkDbContext context)
-        {
-            var comments = new List<Comment>
-            {
-                new Comment()
-                {
-                    User = context.Users.FirstOrDefault(u => u.UserName == "user"),
-                    Bookmark = context.Bookmarks.FirstOrDefault(b => b.Title.Contains("C#")),
-                    Text = "Great book!",
-                    Date = DateTime.Now
-                }
-            };
-
-            foreach (var comment in comments)
-            {
-                // TODO: Seed comments
             }
         }
     }
