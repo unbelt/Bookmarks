@@ -222,6 +222,8 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BookmarkController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\NotificationExtensions.cs" />
@@ -234,7 +236,6 @@
     <Compile Include="Infrastructure\Mappings\IMapTo.cs" />
     <Compile Include="Infrastructure\Mappings\MapType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -307,6 +308,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\Bookmark\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bookmarks.Config\Bookmarks.Config.csproj">
@@ -317,10 +319,15 @@
       <Project>{50257c29-62b5-4929-9aa3-662ee45616fd}</Project>
       <Name>Bookmarks.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bookmarks.Models\Bookmarks.Models.csproj">
+      <Project>{295ce88e-645c-4e5c-a3aa-9b83fa29fb60}</Project>
+      <Name>Bookmarks.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,7 +1,9 @@
 namespace Bookmarks.Data.Migrations
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
     using System.Linq;
 
     using Bookmarks.Models;
@@ -19,11 +21,29 @@ namespace Bookmarks.Data.Migrations
 
         protected override void Seed(BookmarkDbContext context)
         {
-            SeedRoles(context);
-            SeedUsers(context);
-            SeedCategories(context);
-            SeedBookmarks(context);
-            SeedComments(context);
+            try
+            {
+                SeedRoles(context);
+                SeedUsers(context);
+                SeedCategories(context);
+                SeedBookmarks(context);
+                SeedComments(context);
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+
+                throw;
+            }
         }
 
         private static void SeedRoles(BookmarkDbContext context)
@@ -125,14 +145,15 @@ namespace Bookmarks.Data.Migrations
                 new Comment()
                 {
                     User = context.Users.FirstOrDefault(u => u.UserName == "user"),
-                    Bookmark = context.Bookmarks.FirstOrDefault(b => b.Url.Contains("http://www.introprogramming.info/")),
-                    Text = "Great book!"
+                    Bookmark = context.Bookmarks.FirstOrDefault(b => b.Title.Contains("C#")),
+                    Text = "Great book!",
+                    Date = DateTime.Now
                 }
             };
 
             foreach (var comment in comments)
             {
-                context.Comments.AddOrUpdate(c => c.Text, comment);
+                // TODO: Seed comments
             }
         }
     }

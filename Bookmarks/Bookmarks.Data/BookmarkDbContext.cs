@@ -10,7 +10,7 @@
 
     public class BookmarkDbContext : IdentityDbContext<User>, IBookmarkDbContext
     {
-        public const string SqlConnectionString = "Server=.;Database=Twitter;Integrated Security=True;";
+        public const string SqlConnectionString = "Server=.;Database=Bookmarks;Integrated Security=True;";
 
         public BookmarkDbContext()
             : base(SqlConnectionString, throwIfV1Schema: false)
@@ -18,7 +18,7 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookmarkDbContext, Configuration>());
         }
 
-        public static IBookmarkDbContext Create()
+        public static BookmarkDbContext Create()
         {
             return new BookmarkDbContext();
         }

@@ -1,19 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
 namespace Bookmarks.Web.Extensions
 {
-    /*                                                                      *
-     *      This extension was derive from Brad Christie's answer           *
-     *      on StackOverflow.                                               *
-     *                                                                      *
-     *      The original code can be found at:                              *
-     *      http://stackoverflow.com/a/18338264/998328                      *
-     *                                                                      */
+    using System;
+    using System.Collections.Generic;
+    using System.Web.Mvc;
 
     public static class NotificationExtensions
     {
