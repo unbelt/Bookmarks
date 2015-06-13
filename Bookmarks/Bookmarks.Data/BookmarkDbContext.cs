@@ -1,4 +1,6 @@
-﻿namespace Bookmarks.Data
+﻿using Microsoft.AspNet.Identity;
+
+namespace Bookmarks.Data
 {
     using System.Data.Entity;
     using System.Data.Entity.Validation;
@@ -39,11 +41,27 @@
             }
         }
 
+        public RoleManager<IdentityRole> RoleManager
+        {
+            get
+            {
+                return new RoleManager<IdentityRole>(this.RoleStore);
+            }
+        }
+
         public UserStore<User> UserStore
         {
             get
             {
                 return new UserStore<User>(this.DbContext);
+            }
+        }
+
+        public UserManager<User> UserManager
+        {
+            get
+            {
+                return new UserManager<User>(this.UserStore);
             }
         }
 

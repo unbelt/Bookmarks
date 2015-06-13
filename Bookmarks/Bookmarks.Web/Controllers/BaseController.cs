@@ -29,7 +29,7 @@
         [ChildActionOnly]
         public IQueryable<User> GetUsersInRole(string roleName)
         {
-            var userRolesId = new RoleManager<IdentityRole>(this.Data.Context.RoleStore)
+            var userRolesId = this.Data.Context.RoleManager
                 .FindByName(roleName).Users.Select(r => r.UserId);
 
             var users = this.Data.Users.All()

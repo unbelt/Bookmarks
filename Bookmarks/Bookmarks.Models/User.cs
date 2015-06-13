@@ -7,7 +7,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser
+    public class User : IdentityUser, IUser<string>
     {
         private ICollection<Bookmark> bookmarks;
 

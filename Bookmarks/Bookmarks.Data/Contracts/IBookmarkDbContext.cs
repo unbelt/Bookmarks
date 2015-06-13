@@ -1,4 +1,6 @@
-﻿namespace Bookmarks.Data.Contracts
+﻿using Microsoft.AspNet.Identity;
+
+namespace Bookmarks.Data.Contracts
 {
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -27,7 +29,11 @@
 
         RoleStore<IdentityRole> RoleStore { get; }
 
+        RoleManager<IdentityRole> RoleManager { get; }
+
         UserStore<User> UserStore { get; }
+
+        UserManager<User> UserManager { get; }
 
         int SaveChanges();
 

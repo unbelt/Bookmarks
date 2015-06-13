@@ -49,7 +49,7 @@ namespace Bookmarks.Data.Migrations
 
         private static void SeedRoles(BookmarkDbContext context)
         {
-            var roleManager = new RoleManager<IdentityRole>(context.RoleStore);
+            var roleManager = context.RoleManager;
 
             var roles = new List<string>
             {
@@ -69,8 +69,7 @@ namespace Bookmarks.Data.Migrations
 
         private static void SeedUsers(BookmarkDbContext context)
         {
-            var userStore = context.UserStore;
-            var userManager = new UserManager<User>(userStore);
+            var userManager = context.UserManager;
 
             var users = new List<User>
             {
@@ -92,12 +91,8 @@ namespace Bookmarks.Data.Migrations
                 {
                     userManager.Create(user, "pass123");
                     userManager.SetLockoutEnabled(user.Id, false);
-                    userManager.AddToRole(user.Id, "User");
 
-                    if (user.UserName == "admin")
-                    {
-                        userManager.AddToRole(user.Id, "Admin");
-                    }
+                    userManager.AddToRole(user.Id, user.UserName == "admin" ? "Admin" : "User");
                 }
             }
         }
