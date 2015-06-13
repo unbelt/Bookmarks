@@ -9,11 +9,13 @@
     public class BookmarkViewModel: BookmarkSummaryViewModel
     {
         [Required]
+        [StringLength(100, MinimumLength = 10)]
         public string Url { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
 
+        [Required]
         public int CategoryId { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }

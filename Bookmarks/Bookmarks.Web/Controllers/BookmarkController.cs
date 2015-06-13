@@ -11,6 +11,7 @@
     using Bookmarks.Web.Extensions;
     using Bookmarks.Web.ViewModels;
 
+    [Authorize]
     public class BookmarkController : BaseController
     {
         public BookmarkController(IBookmarkData data)
@@ -21,6 +22,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             var bookmark = this.Bookmarks.FirstOrDefault(b => b.Id == id);
@@ -34,14 +36,12 @@
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create(BookmarkViewModel entry)
         {
@@ -62,7 +62,6 @@
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult Edit(int id)
         {
             var bookmark = this.Bookmarks.FirstOrDefault(b => b.Id == id);
@@ -76,7 +75,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, BookmarkViewModel entry)
         {
@@ -85,6 +83,7 @@
                 return View(entry);
             }
 
+            Mapper.CreateMap<BookmarkViewModel, Bookmark>();
             var bookmark = Mapper.Map<Bookmark>(entry);
 
             this.Data.Bookmarks.Update(bookmark);
@@ -97,7 +96,6 @@
         }
 
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {

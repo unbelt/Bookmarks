@@ -67,3 +67,24 @@
 <div>
     @Html.ActionLink("Back to List", "Index", "Home")
 </div>
+
+@section styles
+{
+    @Styles.Render("~/bundles/datepicker-css")
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval", "~/bundles/datepicker-js")
+
+    <script>
+        $(function () {
+            $('#Date').datetimepicker(
+            {
+                format: 'DD-MMM-YYYY HH:mm:ss',
+                sideBySide: true,
+                showTodayButton: true
+            });
+        });
+    </script>
+}
