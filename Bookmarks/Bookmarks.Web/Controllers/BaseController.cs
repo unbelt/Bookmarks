@@ -1,15 +1,17 @@
 ﻿namespace Bookmarks.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
+    using Microsoft.AspNet.Identity;
+
     using Bookmarks.Data.Contracts;
     using Bookmarks.Models;
-
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
+    using Bookmarks.Web.ViewModels;
 
     public class BaseController : Controller
     {
@@ -22,9 +24,23 @@
         public BaseController(IBookmarkData data)
         {
             this.Data = data;
+
+            this.BookmarksSummary = this.Data.Bookmarks.All()
+                .OrderBy(b => b.Votes.Count)
+                .Project().To<BookmarkSummaryViewModel>()
+                .ToList();
+
+            this.Bookmarks = this.Data.Bookmarks.All()
+                .OrderBy(b => b.Votes.Count)
+                .Project().To<BookmarkViewModel>()
+                .ToList();
         }
 
         public IBookmarkData Data { get; set; }
+
+        public ICollection<BookmarkViewModel> Bookmarks { get; set; }
+
+        public ICollection<BookmarkSummaryViewModel> BookmarksSummary { get; set; }
 
         [ChildActionOnly]
         public IQueryable<User> GetUsersInRole(string roleName)
@@ -36,6 +52,15 @@
                 .Where(u => userRolesId.Contains(u.Id));
 
             return users;
+        }
+
+        [ChildActionOnly]
+        public bool IsAdmin()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var isAdmin = (userId != null && this.User.IsInRole("Admin"));
+
+            return isAdmin;
         }
 
         [ChildActionOnly]

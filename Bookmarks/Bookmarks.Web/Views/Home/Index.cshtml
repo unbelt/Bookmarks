@@ -1,12 +1,41 @@
-﻿@model ICollection<Bookmarks.Web.ViewModels.BookmarkViewModel>
+﻿@model ICollection<Bookmarks.Web.ViewModels.BookmarkSummaryViewModel>
 
-@foreach (var bookmark in Model)
-{
-    <article class="col-md-4">
-        <header>
-            <h3>@bookmark.Title</h3>
-        </header>
+<div class="row">
+    <header>
+        <h1>@ViewBag.Title</h1>
+    </header>
 
-        <p>@bookmark.Description</p>
-    </article>
+    @if (Model.Any())
+    {
+        foreach (var bookmark in Model)
+        {
+            <article class="col-md-4">
+                @Html.DisplayFor(model => bookmark)
+
+                @Html.ActionLink("Details", "Details", "Bookmark",
+                    new { bookmark.Id },
+                    new { @class = "btn btn-default" })
+
+                @Html.ActionLink("Edit", "Edit", "Bookmark",
+                    new { bookmark.Id },
+                    new { @class = "btn btn-default" })
+
+                @using (Html.BeginForm("Delete", "Bookmark", new { bookmark.Id }, FormMethod.Post, new { @class = "pull-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Delete" class="btn btn-danger"/>
+                }
+            </article>
+        }
+    }
+    else
+    {
+        <div class="col-md-4">
+            <h1>No Bookmarks</h1>
+        </div>
+    }
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryajax")
 }

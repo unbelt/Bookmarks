@@ -1,0 +1,17 @@
+﻿@model Bookmarks.Web.ViewModels.BookmarkViewModel
+
+<div class="row">
+    <header>
+        <h1>@ViewBag.Title</h1>
+    </header>
+
+    <article class="col-md-4">
+        @Html.DisplayForModel(Model)
+        @Html.Partial("Bookmark/Comment", Model.Comments)
+    </article>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryajax")
+}

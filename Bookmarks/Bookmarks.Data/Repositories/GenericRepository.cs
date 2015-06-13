@@ -60,22 +60,16 @@
 
         private T ChangeState(T entity, EntityState state)
         {
-            this.Attach(entity);
-
-            var entry = this.Context.Entry(entity);
-            entry.State = state;
-
-            return entity;
-        }
-
-        private void Attach(T entity)
-        {
             var entry = this.Context.Entry(entity);
 
             if (entry.State == EntityState.Detached)
             {
                 entry.State = EntityState.Added;
             }
+
+            entry.State = state;
+
+            return entity;
         }
     }
 }

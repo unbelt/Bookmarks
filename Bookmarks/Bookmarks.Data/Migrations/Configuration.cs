@@ -121,9 +121,9 @@ namespace Bookmarks.Data.Migrations
             {
                 new Bookmark()
                 {
-                    Category = context.Categories.FirstOrDefault(c => c.Name == "Books"),
+                    CategoryId = 1,
                     Title = "Computer Programming with C#",
-                    Url = "http://www.introprogramming.info/",
+                    Url = "http://www.introprogramming.info/c#",
                     Description = "The book 'Fundamentals of Computer Programming with C#' is an excellent manual to guide you through your journey of programming as beginner.",
                     Comments = new List<Comment>()
                     {
@@ -131,6 +131,21 @@ namespace Bookmarks.Data.Migrations
                         {
                             User = context.Users.FirstOrDefault(u => u.UserName == "user"),
                             Text = "Great book!"
+                        }
+                    }
+                },
+                new Bookmark()
+                {
+                    CategoryId = 1,
+                    Title = "Computer Programming with Java",
+                    Url = "http://www.introprogramming.info/java",
+                    Description = "The book 'Fundamentals of Computer Programming with Java'.",
+                    Comments = new List<Comment>()
+                    {
+                        new Comment()
+                        {
+                            User = context.Users.FirstOrDefault(u => u.UserName == "user"),
+                            Text = "Good book."
                         }
                     }
                 }

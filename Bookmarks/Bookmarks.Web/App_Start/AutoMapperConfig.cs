@@ -25,8 +25,8 @@
             var fromMaps = GetMaps(types, typeof(IMapFrom<>));
             var toMaps = GetMaps(types, typeof(IMapTo<>));
 
-            CreateMappings(fromMaps);
-            CreateMappings(toMaps);
+            CreateFromMappings(fromMaps);
+            CreateToMappings(toMaps);
 
             LoadCustomMappings(types);
         }
@@ -63,11 +63,19 @@
             return fromMaps;
         }
 
-        private static void CreateMappings(IEnumerable<MapType> maps)
+        private static void CreateFromMappings(IEnumerable<MapType> maps)
         {
             foreach (var map in maps)
             {
                 Mapper.CreateMap(map.Source, map.Destination);
+            }
+        }
+
+        private static void CreateToMappings(IEnumerable<MapType> maps)
+        {
+            foreach (var map in maps)
+            {
+                Mapper.CreateMap(map.Destination, map.Source);
             }
         }
     }

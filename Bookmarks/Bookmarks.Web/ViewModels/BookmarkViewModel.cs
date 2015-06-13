@@ -1,21 +1,22 @@
 ﻿namespace Bookmarks.Web.ViewModels
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
 
     using Bookmarks.Models;
-    using Bookmarks.Web.Infrastructure.Mappings;
 
-    public class BookmarkViewModel : IMapFrom<Bookmark>
+    public class BookmarkViewModel: BookmarkSummaryViewModel
     {
-        public string Title { get; set; }
-
+        [Required]
         public string Url { get; set; }
 
-        public string Description { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
 
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<CommentViewModel> Comments { get; set; }
 
         public ICollection<Vote> Votes { get; set; }
     }

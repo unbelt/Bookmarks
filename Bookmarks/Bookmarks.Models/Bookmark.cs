@@ -1,5 +1,6 @@
 ﻿namespace Bookmarks.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.Collections.Generic;
 
@@ -10,6 +11,7 @@
 
         public Bookmark()
         {
+            this.Date = DateTime.Now;
             this.comments = new HashSet<Comment>();
             this.votes = new HashSet<Vote>();
         }
@@ -29,7 +31,10 @@
         public string Description { get; set; }
 
         [Required]
-        public virtual Category Category { get; set; }
+        public DateTime Date { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
 
         public virtual ICollection<Comment> Comments
         {

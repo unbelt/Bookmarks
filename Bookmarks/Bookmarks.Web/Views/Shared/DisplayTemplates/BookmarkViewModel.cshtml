@@ -1,0 +1,9 @@
+﻿@model Bookmarks.Web.ViewModels.BookmarkViewModel
+
+<header>
+    <h3>@Model.Title</h3>
+</header>
+
+<p>@Model.Description</p>
+<p>URL: <a href="@Model.Url" target="_blank">@Model.Url</a></p>
+<p>Votes: @Model.Votes.Count</p>

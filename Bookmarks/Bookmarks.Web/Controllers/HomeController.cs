@@ -4,23 +4,24 @@
     using System.Web.Mvc;
 
     using Bookmarks.Data.Contracts;
-    using Bookmarks.Web.ViewModels;
-
-    using AutoMapper.QueryableExtensions;
 
     public class HomeController : BaseController
     {
+        private readonly int defaultEntryCount;
+
         public HomeController(IBookmarkData data)
             : base(data)
         {
+            this.defaultEntryCount = 10;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            var bookmarks = this.Data.Bookmarks.All()
-                .OrderBy(b => b.Votes.Count)
-                .Project().To<BookmarkViewModel>()
-                .ToList();
+            ViewBag.Title = "Recent bookmarks";
+
+            var bookmarks = this.BookmarksSummary
+                .Take(this.defaultEntryCount).ToList();
 
             return View(bookmarks);
         }
