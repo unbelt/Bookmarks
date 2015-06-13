@@ -8,6 +8,7 @@
 
     using Bookmarks.Data.Contracts;
     using Bookmarks.Models;
+    using Bookmarks.Web.Extensions;
     using Bookmarks.Web.ViewModels;
 
     public class BookmarkController : BaseController
@@ -55,6 +56,8 @@
             this.Data.Bookmarks.Add(bookmark);
             this.Data.SaveChanges();
 
+            this.AddNotification("Bookmark created!", NotificationType.SUCCESS);
+
             return this.RedirectToAction<HomeController>(c => c.Index());
         }
 
@@ -87,6 +90,8 @@
             this.Data.Bookmarks.Update(bookmark);
             this.Data.SaveChanges();
 
+            this.AddNotification("Bookmark edited!", NotificationType.INFO);
+
             return this.RedirectToAction<HomeController>(c => c.Index());
 
         }
@@ -101,6 +106,8 @@
                 this.Data.Bookmarks.Delete(id);
                 this.Data.SaveChanges();
             }
+
+            this.AddNotification("Bookmark deleted!", NotificationType.INFO);
 
             return this.RedirectToAction<HomeController>(c => c.Index());
         }

@@ -6,6 +6,7 @@
     using System.Web.Mvc;
 
     using Bookmarks.Models;
+    using Bookmarks.Web.Extensions;
     using Bookmarks.Web.ViewModels;
 
     using Microsoft.AspNet.Identity;
@@ -166,6 +167,8 @@
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+
+                this.AddNotification("Successfully registered!", NotificationType.SUCCESS);
             }
 
             // If we got this far, something failed, redisplay form
@@ -391,6 +394,9 @@
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
+
+            this.AddNotification("You have logged out!", NotificationType.INFO);
+
             return RedirectToAction("Index", "Home");
         }
 
